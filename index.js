@@ -1,7 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const Book = require('./models/books');
+//const Book = require('./models/books');
+
+const taskSchema = new Schema({
+    text: String,
+});
+
+let Task = mongoose.model('task', taskSchema);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +22,7 @@ const connectDB = async ()=> {
         process.exit(1);
     }
 }
-
+/*
 app.get('/', (req, res) => {
     res.send({title: 'Books'});
 });
@@ -47,6 +53,20 @@ app.get('/books', async (req, res) => {
     } else {
         res.send("Something went wrong.");
     }
+});
+*/
+app.get(`/`, async function (req, res) {
+    let tasks = await Task.find();
+    res.render(`index`, {tasks: tasks});
+});
+
+app.get(`/create-task`, async function (req, res) {
+    let text = req.query.text;
+    let task = new Task({
+        text: text
+    });
+    await task.save();
+    res.redirect(`back`);
 });
 
 
