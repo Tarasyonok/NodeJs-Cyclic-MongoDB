@@ -12,8 +12,9 @@
         <button type="submit">Отправить</button>
     </form>
     <div>
-        <h2>Задача:</h2>
-        <div id="show">{{task.body}}</div>
+        {{#each tasks}}
+        {{this.text}}
+        {{/each}}
     </div>
 </body>
 </html>

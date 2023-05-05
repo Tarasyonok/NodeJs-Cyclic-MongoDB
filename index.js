@@ -1,15 +1,20 @@
 require('dotenv').config();
 const express = require('express');
+const app = express();
+
+let hbs = require(`hbs`);
+app.set(`views`, `views`);
+app.set(`view engine`, `hbs`);
+
 const mongoose = require('mongoose');
 //const Book = require('./models/books');
-
+const Schema = mongoose.Schema;
 const taskSchema = new Schema({
     text: String,
 });
 
 let Task = mongoose.model('task', taskSchema);
 
-const app = express();
 const PORT = process.env.PORT || 3000;
 
 mongoose.set('strictQuery', false);
