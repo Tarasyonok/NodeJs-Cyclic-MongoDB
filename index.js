@@ -60,17 +60,33 @@ app.get('/books', async (req, res) => {
     }
 });
 */
+
+function reverseArr(input) {
+    var ret = new Array;
+    for(let i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+    return ret;
+}
+
 app.get(`/`, async function (req, res) {
     let tasks = await Task.find();
-    res.render(`index`, {tasks: tasks});
+    tasks_rev = reverseArr(tasks)
+    res.render(`task`, {tasks: tasks_rev});
 });
 
 app.get(`/create-task`, async function (req, res) {
     let text = req.query.text;
+    text = text.replaceAll('\n', '<br>');
     let task = new Task({
         text: text
     });
     await task.save();
+    res.redirect(`back`);
+});
+
+app.get(`/clean-all`, async function(req, res) {
+    await Task.deleteMany();
     res.redirect(`back`);
 });
 

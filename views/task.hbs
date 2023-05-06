@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"
+        defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                06.05.2023
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Название Задачи</h5>
+                <p class="card-text">
+                    Текст условия Текст условия Текст условия Текст условия<br>
+                    Текст условия<br>
+                    Текст условия Текст условия<br>
+                    Введите 123
+                </p>
+                <form>
+                    <div class="row">
+                        <input type="number" class="form-control col-md-4 col-12 mt-3" placeholder="Введите число">
+                        <button class="btn btn-primary col-md-4 col-12 mt-3" id="submit-answer">Ответить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="mt-5 row">
+            <h2>Коментарии</h2>
+            <form action="/create-task">
+                <textarea name="text" class="form-control mb-3" style="width: 350px; height: 50px; max-height: 200px;"></textarea>
+                <button type="submit" class="btn btn-primary mb-3">Отправить</button>
+                <a href="/clean-all" class="btn btn-primary mb-3">Очистить чат</a>
+            </form>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"></li>
+                {{#each tasks}}
+                <li class="list-group-item">{{{this.text}}}</li>
+                {{/each}}
+                <li class="list-group-item"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

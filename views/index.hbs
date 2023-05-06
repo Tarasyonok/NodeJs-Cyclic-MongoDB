@@ -19,11 +19,12 @@
         <form action="/create-task">
             <textarea name="text" class="form-control mb-3" style="width: 350px; height: 200px;"></textarea>
             <button type="submit" class="btn btn-primary mb-3">Отправить</button>
+            <a href="/clean-all" class="btn btn-primary mb-3">Очистить чат</a>
         </form>
         <div>
             {{#each tasks}}
             <p>
-                {{this.text}}
+                {{{this.text}}}
             </p>
             {{/each}}
         </div>
